@@ -37,13 +37,12 @@ class ProjectSerializer(serializers.ModelSerializer):
     packages = PackageSerializer(many=True)
 
     def create(self, validated_data):
-        pass
         
-        #packages_data = validated_data['packages'] # lista de pacotes
-        #print(packages_data)
-        #projeto = Project.objects.create(name=validated_data['name']) # cria o projeto
-        #print(projeto)
-        #return 'ok'
+        # TODO
+        # - Processar os pacotes recebidos
+        # - Persistir informações no banco
+        packages_data = validated_data['packages'] # lista de pacotes
+        projeto = Project.objects.create(name=validated_data['name']) # cria o projeto
 
         
         
