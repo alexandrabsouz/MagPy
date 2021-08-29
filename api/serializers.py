@@ -18,7 +18,16 @@ class PackageSerializer(serializers.ModelSerializer):
         if r.status_code != 200: # verifica o status code
             raise serializers.ValidationError(f"Package {instance.name} not found on PyPI") # caso nao encontre o pacote
 
-       
+        data_json = r.json() # pega o json
+
+
+        if data_json['info']['version'] != instance.version: # verifica se a versão e diferente
+            instance.version = data_json['info']['version'] # atualiza a versão
+
+            instance.save() # salva no banco de dados
+
+        return instance.version # retorna a versão
+
 
 class ProjectSerializer(serializers.ModelSerializer):
     class Meta:
