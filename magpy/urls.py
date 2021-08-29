@@ -37,12 +37,6 @@ schema_view = get_schema_view(
    permission_classes=(permissions.AllowAny,),
 )
 
-urlpatterns = [
-
-   ...
-]
-
-
 router = routers.SimpleRouter()
 router.register(r'projects', views.ProjectViewSet)
 
