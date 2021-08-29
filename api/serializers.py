@@ -43,8 +43,20 @@ class ProjectSerializer(serializers.ModelSerializer):
         # - Persistir informações no banco
         packages_data = validated_data['packages'] # lista de pacotes
         projeto = Project.objects.create(name=validated_data['name']) # cria o projeto
-
         
+        for package in packages_data:                           # percorro todos os pacoters
+            _package = package["name"]                                 # pego o nome do pacote
+            r = requests.get(f"https://pypi.org/pypi/{_package}/json") # busca na api do pypi
+
+
+            if r.status_code != 200: # verifica o status code
+                projeto.delete() # caso nao encontre o pacote
+
+                raise ParseError("One or more packages doesn't exist") # caso nao encontre o pacote
+
+            PackageRelease.objects.create(project=projeto ,**package) # cria o pacote
+
+        return projeto # retorna o projeto
         
         
         #packages = validated_data['packages']
