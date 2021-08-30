@@ -59,7 +59,7 @@ Assim que o `pip` terminar de baixar as dependências:
 E navegue por `http://127.0.0.1:8000/api/`.
 
 
-# Uso da API:
+## Uso da API:
 
 Você vai encontrar toda a documentação sobre os endpoints em ![MagPy Swagger](https://instruct-magpy-api.herokuapp.com/swagger/)
 
