@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 import django_heroku
 
@@ -81,8 +82,12 @@ WSGI_APPLICATION = 'magpy.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': os.environ.get('DB_NAME', 'dd2oh8fel0ib70'),
+        'USER': os.environ.get('DB_USER', 'twxdepuercejvq'),
+        'PASSWORD': os.environ.get('DB_PASS', 'e427eed971c0175776a81078ed2e7db18b86a9c377306f8fccb79c3d1e603956'),
+        'HOST': '18.209.153.180',
+        'PORT': '5432',
     }
 }
 
